@@ -7,26 +7,25 @@ class LinkedList():
     def __init__(self):
         self.head = None
 
-    def createList():
-        self.head = None
+    def createList(self):
+        num = int(input("Enter the number of nodes"))
+        if num == 0:
+            return
+        for i in range(num):
+            newNode = int(input("Enter the element to be inserted"))
+            self.insertEnd(newNode)
 
-    def printList():
+    def printList(self):
         currentNode = self.head
         if self.head is None:
             print "List is empty"
         else:
-            print currentNode
-            currentNode = currentNode.next
+            while currentNode is not None:
+                print currentNode.data
+                currentNode = currentNode.next
 
-    def insertHead(self, newNode):
-        currentNode = self.head
-        if self.head is None:
-            currentNode = self.head
-        else:
-            newNode.next = currentNode
-            self.head = newNode
 
-    def listLength():
+    def listLength(self):
         currentNode = self.head
         length = 0
         while True:
@@ -34,24 +33,34 @@ class LinkedList():
                 return length
             currentNode = currentNode.next
             length +=1
+        return length
 
-
-    def insertEnd(self, newNode):
-        lastNode = self.head
+    def insertHead(self, data):
+        currentNode = self.head
+        newNode = Node(data)
         if self.head is None:
-            self.head = newNode
+            currentNode = self.head
         else:
-            while True:
-                if lastNode.next is None:
-                    lastNode.next = newNode
-                    break
-                lastNode = lastNode.next
+            newNode.next = currentNode
+            self.head = newNode
 
-    def insertAt(self, newNode, position):
+    def insertEnd(self, data):
+        temp = Node(data)
+        if self.head is None:
+            self.head =temp
+            return
+        lastNode = self.head
+        while True:
+            if lastNode.next is None:
+                break
+            lastNode = lastNode.next
+        lastNode.next = temp
+
+    def insertAt(self, data, position):
         currentNode = self.head
         currentPostition = 0
         if position == 0:
-            self.insertHead(newNode)
+            self.insertHead(Node(data))
             return
         if position < 0 or position > self.listLength():
             print "Invalid position"
@@ -59,7 +68,7 @@ class LinkedList():
         else:
             while True:
                 if currentPostition == position:
-                    previousNode.next = newNode
+                    previousNode.next = Node(data)
                     newNode.next = currentNode
                     break
                 previousNode = currentNode
@@ -90,15 +99,19 @@ class LinkedList():
             currentNode = currentNode.next
             currentPostition +=1
 
-    def serachElement(self, element):
+    def searchElement(self, element):
         currentNode = self.head
-        currentPostition = 0
+        currentPostition = 1
 
         while currentNode is not None:
             if currentNode.data == element:
                 return currentPostition
             currentNode = currentNode.next
             currentPostition +=1
+
+        else:
+            print element, "not found in the list"
+            return False
 
 
 
@@ -129,12 +142,60 @@ while True:
     print "18: Remove cycle"
     print "19: Quit"
 
-option = int(input("Enter an option")):
+    option = int(input("Enter an option"))
 
-if option == 1:
-    list.printList()
-elif option == 2:
-    list.listLength()
-elif option == 3:
-    element = int(input("Enter element to be searched: "))
-    list.searchElement(element)
+    if option == 1:
+        list.printList()
+    elif option == 2:
+        print list.listLength()
+    elif option == 3:
+        element = int(input("Enter element to be searched: "))
+        print list.searchElement(element)
+    elif option == 4:
+        element = int(input("Enter element to be inserted: "))
+        list.insertHead(element)
+    elif option == 5:
+        element = int(input("Enter element to be inserted: "))
+        list.insertEnd(element)
+    elif option == 6:
+        element = int(input("Enter element to be inserted: "))
+        checkElement = int(input("Enter element after which to insert: "))
+        list.insertAfterElement(element, checkElement)
+    elif option == 7:
+        element = int(input("Enter element to be inserted: "))
+        checkElement = int(input("Enter element before which to insert: "))
+        list.insertBeforeElement(element)
+    elif option == 8:
+        element = int(input("Enter element to be inserted: "))
+        position = int(input("Enter position at which to insert: "))
+        list.insertAt(element,position)
+    elif option == 9:
+        list.deleteHead()
+    elif option == 10:
+        list.deleteEnd()
+    elif option == 11:
+        element = int(input("Enter element to be deleted: "))
+        list.deleteNode(element)
+    elif option == 12:
+        list.reverseList()
+    elif option == 13:
+        list.bubbleSortExData()
+    elif option == 14:
+        list.bubbleSortExLinks()
+    elif option == 15:
+        list.mergeSort()
+    elif option == 16:
+        element = int(input("Enter element at which the cycle has to be inserted: "))
+        list.insertCycle(element)
+    elif option == 17:
+        if list.hasCycle():
+            print "List has a cycle"
+        else:
+            print "List doesnt have a cycle"
+    elif option == 18:
+        list.removeCycle()
+    elif option == 19:
+        break
+    else:
+        print "Incorrect option"
+        break
