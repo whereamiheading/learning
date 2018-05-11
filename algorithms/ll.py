@@ -174,8 +174,18 @@ class LinkedList():
             currentNode = next
         self.head = prev
 
-    def bubbleSortExData():
-        pass
+    def bubbleSortExData(self):
+        end = None
+        while self.head != end:
+            currentNode = self.head
+            while currentNode.next != end:
+                nextNode = currentNode.next
+                if currentNode.data > nextNode.data:
+                    currentNode.data , nextNode.data = nextNode.data, currentNode.data
+                currentNode = currentNode.next
+            end = currentNode
+
+
 
     def bubbleSortExLinks():
         pass
