@@ -62,6 +62,24 @@ class BinaryTree:
             if p.rchild is not None:
                 queue.append(p.rchild)
 
+    def height(self):
+        return self._height(self.root)
+
+    def _height(self, p):
+        if p is None:
+            return 0
+
+        hL = self._height(p.lchild)
+        hR = self._height(p.rchild)
+
+        if hL > hR:
+            return 1+hL
+        else:
+            return 1+hR
+
+
+
+
 bt = BinaryTree()
 bt.create_tree()
 
@@ -76,3 +94,7 @@ bt.postorder()
 
 print 'level-order'
 bt.level_order()
+
+print ' height'
+h = bt.height()
+print ' height is : ' + str(h)

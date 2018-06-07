@@ -1,11 +1,9 @@
 from collections import deque
-
 class Node:
-    def __init__(self, value):
-        self.info = value
+    def __init__(self, data):
+        self.info = data
         self.lchild = None
         self.rchild = None
-
 
 class BinaryTree:
     def __init__(self):
@@ -17,64 +15,62 @@ class BinaryTree:
     def display(self):
         self._display(self.root, 0)
 
-    def _display(self, p, level):
+    def _display(self,p,level):
         if p is None:
             return
-
         self._display(p.rchild, level+1)
-        print '\n'
+        print()
 
         for i in range(level):
-            print "    "
-        print p.info
+            print("    ", end ='')
+        print(p.info)
         self._display(p.lchild, level+1)
+
 
     def preorder(self):
         self._preorder(self.root)
-        print ' asd'
+        print()
 
     def _preorder(self, p):
         if p is None:
             return
-        print p.info + ' '
+        print(p.info, "  " , end ='')
         self._preorder(p.lchild)
         self._preorder(p.rchild)
 
     def inorder(self):
         self._inorder(self.root)
-        print ' '
+        print()
 
     def _inorder(self, p):
         if p is None:
             return
 
-        self._inorder(p.lchild)
-        print p.info + ' '
-        self._inorder(p.rchild)
+        self._preorder(p.lchild)
+        print(p.info , "   ", end ='')
+        self._preorder(p.rchild)
 
     def postorder(self):
         self._postorder(self.root)
-        print '\n'
+        print()
 
     def _postorder(self, p):
         if p is None:
             return
-
-        self._postorder(p.lchild)
-        self._postorder(p.rchild)
-        print p.info + ' '
+        self._preorder(p.lchild)
+        self._preorder(p.rchild)
+        print(p.info, "    ", end ='')
 
     def level_order(self):
         if self.root is None:
-            print "Tree is empty"
+            print("Tree is empty")
             return
-
         qu = deque()
         qu.append(self.root)
 
-        while len(qu)!= 0:
+        while len(qu) != 0:
             p = qu.popleft()
-            print p.info + '  '
+            print(p.info + "    ", end ='')
             if p.lchild is not None:
                 qu.append(p.lchild)
             if p.rchild is not None:
@@ -86,7 +82,6 @@ class BinaryTree:
     def _height(self, p):
         if p is None:
             return 0
-
         hL = self._height(p.lchild)
         hR = self._height(p.rchild)
 
@@ -101,28 +96,30 @@ class BinaryTree:
         self.root.rchild = Node('R')
         self.root.lchild.lchild = Node('A')
         self.root.lchild.rchild = Node('B')
-        self.root.rhild.lchild = Node('X')
+        self.root.rchild.lchild = Node('X')
 
 
 bt = BinaryTree()
-bt.create_tree
+bt.create_tree()
 
 bt.display()
-print '\n'
+print('%%%%')
+print()
 
-print 'preorder'
+print("Preorder: ")
 bt.preorder()
-print ''
+print()
 
-print 'postoder'
-bt.postorder()
-print ''
-
-print 'inorder'
+print("Inorder: ")
 bt.inorder()
-print ''
+print()
 
-print 'level order'
+print("Postorder: ")
+bt.postorder()
+print()
+
+print("Levelorder: ")
 bt.level_order()
-print ''
-print 'Helgith of tree is : ' + str(bt.height())
+print()
+
+print("height of the tree is : " , bt.height())
