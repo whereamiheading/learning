@@ -67,25 +67,164 @@ class SingleLinkedList:
             self.insert_at_end(data)
 
     def insert_after(self, data, x):
-        pass
+        currentNode = self.head
+        while currentNode is not None:
+            if currentNode.data == x:
+                break
+            currentNode = currentNode.next
+
+        if currentNode is None:
+            print '    ' + str(x) + ' is not present in the list'
+        else:
+            temp = Node(data)
+            temp.next = currentNode.next
+            currentNode.next = temp
+
 
     def insert_before(self, data, x):
-        pass
+        currentNode  = self.head
+        if self.head is None:
+            print ' list is empty'
+            return
 
-    def insert_at_position(self,data,k):
-        pass
+        if self.head.data == x:
+            temp = Node(data)
+            temp.next = self.head
+            self.head = temp
+            return
+
+        while currentNode is not None:
+            if currentNode.next.data == x:
+                break
+            currentNode = currentNode.next
+
+        if currentNode.next is None:
+            print '    ' + str(x) + ' is not present in the list'
+        else:
+            temp = Node(data)
+            temp.next = currentNode.next
+            currentNode.next = temp
+
+
+
+
+    def insert_at_position(self, data, position):
+        if position == 1:
+            temp = Node(data)
+            temp.next = self.head
+            self.head = temp
+            return
+
+        currentNode =self.head
+        currposition = 1
+
+        while currposition < position -1 and currentNode is not None:
+            currentNode = currentNode.next
+            currposition +=1
+
+        if currentNode is None:
+            print "You can insert only upto position " + str(position)
+
+        else:
+            temp = Node(data)
+            temp.next = currentNode.next
+            currentNode.next = temp
+        # newNode = Node(data)
+        # print self.count_nodes()
+        # if newPosition <0 or newPosition > self.count_nodes():
+        #     print 'list length error'
+        #     return
+        # currentPostition = 0
+        # currentNode = self.head
+        # if newPosition == 0:
+        #     self.insert_in_beginning(newNode)
+        #     return
+        # while True:
+        #     if currentPostition == newPosition:
+        #         previousNode.next = newNode
+        #         newNode.next = currentNode
+        #         break
+        #     previousNode = currentNode
+        #     currentPostition +=1
+        #     currentNode = currentNode.next
+
+
 
     def delete_node(self, x):
-        pass
+        if self.head is None:
+            print 'List is empty'
+            return
+
+        if self.head.data == x:
+            self.head = self.head.next
+            return
+
+        currentNode = self.head
+        while currentNode.next is not None:
+            if currentNode.next.data == x:
+                break
+            currentNode = currentNode.next
+
+        if currentNode is None:
+            print 'element not in list'
+        else:
+            currentNode.next = currentNode.next.next
 
     def delete_first_node(self):
-        pass
+        if self.head is None:
+            return
+        else:
+            self.head = self.head.next
 
     def delete_last_node(self):
-        pass
+        if self.head is None:
+            print ' list is empty'
+            return
+
+        if self.head.next is None:
+            self.head = None
+            return
+
+        currentNode = self.head
+        while currentNode.next.next is not None:
+            currentNode = currentNode.next
+        currentNode.next = None
+
+
 
     def reverse_list(self):
-        pass
+        currentNode = self.head
+        prev = None
+        while currentNode :
+            next = currentNode.next
+            currentNode.next = prev
+            prev = currentNode
+            currentNode = next
+        self.head = prev
+
+
+    def recur_reverse(self):
+
+        def _recur_reverse(curr, prev ):
+            if not curr:
+                return prev
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+            _recur_reverse(curr, prev)
+        self.head = _recur_reverse(curr = self.head, prev = None)
+
+
+
+        # currentNode = self.head
+        # prev = None
+        # while currentNode is not None:
+        #     next = currentNode.next
+        #     currentNode.next = prev
+        #     prev = currentNode
+        #     currentNode = next
+        # self.head = prev
 
     def bubble_sort_exdata(self):
         pass
@@ -145,6 +284,7 @@ while True:
     print "17: Detect cycle"
     print "18: Remove cycle"
     print "19: Quit"
+    print "20: Recur reverse cycle"
 
     option = int(input("Enter an option"))
 
@@ -166,11 +306,11 @@ while True:
         checkElement = int(input("Enter element after which to insert: "))
         list.insert_after(element, checkElement)
     elif option == 7:
-        element = int(input("Enter element to be inserted: "))
-        checkElement = int(input("Enter element before which to insert: "))
+        data = int(input("Enter element to be inserted: "))
+        x7 = int(input("Enter element before which to insert: "))
         list.insert_before(data, x)
     elif option == 8:
-        element = int(input("Enter element to be inserted: "))
+        data = int(input("Enter element to be inserted: "))
         position = int(input("Enter position at which to insert: "))
         list.insert_at_position(data,position)
     elif option == 9:
@@ -198,6 +338,8 @@ while True:
             print "List doesnt have a cycle"
     elif option == 18:
         list.remove_cycle()
+    elif option == 20:
+        list.recur_reverse()
     elif option == 19:
         break
     else:
