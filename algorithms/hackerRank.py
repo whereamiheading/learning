@@ -8,6 +8,7 @@ import sys
 #
 # Complete the gradingStudents function below.
 #
+#
 def gradingStudents(grades):
     gd = []
     for i in range(len(grades)):
@@ -15,12 +16,13 @@ def gradingStudents(grades):
         while grades[i] > 5*mul:
             mul +=1
         if grades[i] < 38:
-            pass
+            gd.append(grades[i])
         elif abs(grades[i] - mul*5) <3:
             g = mul*5
             gd.append(g)
         elif abs(grades[i] -mul*5) >=3:
-            pass
+            gd.append(grades[i])
+
     return gd
 
 

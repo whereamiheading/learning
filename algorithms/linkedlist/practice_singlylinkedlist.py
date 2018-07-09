@@ -18,7 +18,7 @@ class singlyLinkedList:
 			lastNode = lastNode.next
 
 	def listLength(self):
-		count = 0 
+		count = 0
 		currentNode = self.head
 		while currentNode:
 			count += 1
@@ -27,7 +27,7 @@ class singlyLinkedList:
 
 	def insertEnd(self, data):
 		newNode = Node(data)
-		
+
 		if self.head is None:
 			self.head = newNode
 			return
@@ -43,7 +43,7 @@ class singlyLinkedList:
 		newNode = Node(data)
 
 		if self.head is None:
-			self.head = newNode	
+			self.head = newNode
 			return
 
 		newNode.next = self.head
@@ -88,7 +88,7 @@ class singlyLinkedList:
 				return
 			previousNode = currentNode
 			currentNode = currentNode.next
-		
+
 		else:
 			print str(x) +  '  is not present in the list'
 
@@ -98,7 +98,7 @@ class singlyLinkedList:
 
 	def insertAt(self, data, position):
 		currentPosition = 1
-		currentNode = self.head 
+		currentNode = self.head
 		newNode = Node(data)
 		length = self.listLength()
 		if position <0 or position > length:
@@ -117,7 +117,7 @@ class singlyLinkedList:
 
 			previousNode = currentNode
 			currentNode = currentNode.next
-			currentPosition += 1 
+			currentPosition += 1
 
 	def deleteFirstNode(self):
 		if self.listLength == 0 :
@@ -149,11 +149,11 @@ class singlyLinkedList:
 
 		while currentNode:
 			if currentNode.data == data:
-				previousNode.next = currentNode.next	
+				previousNode.next = currentNode.next
 			previousNode = currentNode
 			currentNode = currentNode.next
 
-		
+
 
 	def reverseList(self):
 		prev = None
@@ -166,7 +166,7 @@ class singlyLinkedList:
 		self.head = prev
 
 	def recur_reverse(self):
-		
+
 		def _recur_reverse(curr, prev):
 			if not curr:
 				return prev
@@ -183,7 +183,7 @@ class singlyLinkedList:
 	def bubble_sort_exdata1(self):
 		end = None
 		while  self.head.next != end:
-			fn = self.head 
+			fn = self.head
 			while fn.next !=end:
 				sn = fn.next
 				if fn.data  > sn.data :
@@ -194,9 +194,9 @@ class singlyLinkedList:
 	def bubble_sort_exdata2(self):
 		end = None
 		while end != self.head.next:
-			fn = self.head 
+			fn = self.head
 			while fn.next != end:
-				sn = fn.next 
+				sn = fn.next
 				if fn.data >sn.data:
 					fn.data , sn.data = sn.data, fn.data
 				fn = fn.next
@@ -210,9 +210,9 @@ class singlyLinkedList:
 				sn = fn.next
 				if fn.data >sn.data:
 					fn.data, sn.data = sn.data, fn.data
-				fn = fn.next 
+				fn = fn.next
 			end = fn
-	
+
 
 	def bubble_sort_exlinks(self):
 	    pass
@@ -311,7 +311,7 @@ while True:
     	list.recur_reverse()
     elif option == 13:
     	list.bubble_sort_exdata()
-    # elif option == 14:	
+    # elif option == 14:
     #     list.bubble_sort_exlinks()
     # elif option == 15:
     #     list.mergesort()
@@ -325,7 +325,7 @@ while True:
     #         print "List doesnt have a cycle"
     # elif option == 18:
     #     list.remove_cycle()
-	
+
 	#elif option == 20:
 	#	pass
 		#list.recur_reverse()
@@ -334,4 +334,3 @@ while True:
     else:
         print "Incorrect option"
         break
-		
