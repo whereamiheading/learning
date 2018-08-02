@@ -1,3 +1,8 @@
+####   For every Node K, left child is at 2K, right child is at 2k+1. if 2k>n, then there is no left child for k-th element. If 2k+1>n, then no right child for element at k-th node .
+###    Parent of any k-th node is at k//2  
+####
+####
+
 from collections import deque
 class Node:
     def __init__(self,data):

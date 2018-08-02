@@ -5,7 +5,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.lchild = None
-        self.rchld = None
+        self.rchild = None
 
 class BinarySearchTree:
     def __init__(self):
@@ -57,14 +57,16 @@ class BinarySearchTree:
     def min1(self):
         if self.isEmpty():
             raise TreeEmptyError("Tree is empty")
-        while p is not None:
+        p = self.root
+        while p.lchild is not None:
             p = p.lchild
         return p.data
 
     def max1(self):
         if self.isEmpty():
             raise TreeEmptyError("Tree is empty")
-        while p is not None:
+        p = self.root
+        while p.rchild is not None:
             p = p.rchild
         return p.data
 
@@ -119,14 +121,34 @@ class BinarySearchTree:
             print 'key already present'
         return p
 
+    def inorder(self):
+        self._inorder(self.root)
 
+    def _inorder(self, p):
+        if p is None:
+            return
+        self._inorder(p.lchild)
+        print p.data
+        self._inorder(p.rchild)
 
+    def preorder(self):
+        self._preorder(self.root)
 
+    def _preorder(self, p):
+        if p is None:
+            return
+        print p.data
+        self._preorder(p.lchild)
+        self._preorder(p.rchild)
 
-
-
-
-
+    def postorder(self):
+        self._postorder(self.root)
+    def _postorder(self, p):
+        if p is None:
+            return
+        self._postorder(p.lchild)
+        self._postorder(p.rchild)
+        print p.data
 
 
 bst = BinarySearchTree()

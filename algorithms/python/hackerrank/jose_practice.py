@@ -24,13 +24,11 @@ print res
 
 def uniq(string):
     characters = set()
-
     for letter in string:
         if letter in characters:
             return False
         else:
             characters.add(letter)
-
     return True
 
 res= uniq('abcd')
